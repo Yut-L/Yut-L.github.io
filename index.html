@@ -96,38 +96,16 @@
         <p>跨域: 出于浏览器的同源策略限制, 会阻止一个域的javascript脚本和另外一个域的内容进行交互</p>
 <img src="https://i.loli.net/2021/04/01/sfZDKriMPcvWxR4.jpg" style="zoom: 80%;" />
 
-<br/>
-
-<p>常见解决方案: </p>
-<p>（1）HTML特殊标签</p>
-<p>link、script、img、frame等标签具有跨域特性, 可直接访问</p>
-<br/>
-
-<p>（2）cors</p>
-<p>普通跨域请求只需服务器端设置（以php为例）</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">header(“Access-Control-Allow-Origin: *”)</span><br></pre></td></tr></table></figure>
-
-<p> 带cookie跨域请求：前后端都需要进行设置 ?</p>
-<p>（3）proxy代理（开发环境用proxy，生产环境用nginx反向代理）</p>
-<p>利用服务器对数据进行转发, 以proxy为例</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line"></span><br><span class="line">  devServer: &#123;</span><br><span class="line">    proxy: &#123;</span><br><span class="line">     <span class="string">&quot;/api&quot;</span>: &#123; <span class="comment">//表示是否需要跨域，接口地址以/api开头则跨域</span></span><br><span class="line">        target: <span class="string">&quot;&quot;</span>, <span class="comment">//设置调用的接口域名和端口号</span></span><br><span class="line">        changeOrigin: ture, <span class="comment">//开启代理，在本地创建一个虚拟服务器</span></span><br><span class="line">        pathRewrite:&#123;</span><br><span class="line">          <span class="string">&quot;^api&quot;</span>: <span class="string">&quot;/&quot;</span></span><br><span class="line">        &#125;</span><br><span class="line">       &#125;  </span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<br/>
-
-<p>（4）jsonp</p>
-<p>利用script标签远程动态加载js代码, 只支持get方法</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ajax(&#123;</span><br><span class="line">  type: <span class="string">&quot;get&quot;</span>,</span><br><span class="line">  url: <span class="string">&quot;&quot;</span>,</span><br><span class="line">  dataType: <span class="string">&quot;jsonp&quot;</span>,</span><br><span class="line">  success: <span class="function"><span class="keyword">function</span> (<span class="params">response</span>)</span>&#123;&#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-
-
+<p><escape>
+        
+          <p class="article-more-link">
+            <a href="/2021/04/01/about%20the%20CORS/#more">Read More</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/04/01/about%20the%20CORS/" data-id="ckmz29adc0000ncvyfauh7bom" data-title="跨域（Cross-origin resource sharing）相关" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/04/01/about%20the%20CORS/" data-id="ckmz3xqfg00001cvyhh6jeoq1" data-title="跨域（Cross-origin resource sharing）相关" class="article-share-link">Share</a>
       
       
       
@@ -176,7 +154,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/03/31/html%20semantic%20meaning/" data-id="ckmz29adl0002ncvy2jmo03uv" data-title="关于HTML语义化" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/03/31/html%20semantic%20meaning/" data-id="ckmz3xqfu00031cvyhlrg7g6s" data-title="关于HTML语义化" class="article-share-link">Share</a>
       
       
       
@@ -222,7 +200,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/03/29/flex%20use/" data-id="ckmz29adm0004ncvy0sclbt4e" data-title="flex布局 用法记录" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/03/29/flex%20use/" data-id="ckmz3xqfr00011cvy6gbe7bvz" data-title="flex布局 用法记录" class="article-share-link">Share</a>
       
       
       
@@ -261,7 +239,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/03/29/vuejs%20learning/" data-id="ckmz29adm0003ncvya6f7900j" data-title="vue.js 学习笔记" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/03/29/vuejs%20learning/" data-id="ckmz3xqfv00041cvybkfj7how" data-title="vue.js 学习笔记" class="article-share-link">Share</a>
       
       
       
@@ -300,7 +278,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/03/29/hello-world/" data-id="ckmz29adj0001ncvyeyrt9alm" data-title="Hello World" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/03/29/hello-world/" data-id="ckmz3xqft00021cvyhpgtaoce" data-title="Hello World" class="article-share-link">Share</a>
       
       
       
