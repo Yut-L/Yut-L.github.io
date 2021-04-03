@@ -4,17 +4,17 @@
   <meta charset="utf-8">
   
   
-  <title>vue.js 学习笔记 | Nobody can save you but yourself</title>
+  <title>JS 防抖和节流 | Nobody can save you but yourself</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="vue框架vue">
+  <meta name="description" content="防抖:减少事件的触发, 一段时间内只有一次触发（在产生事件时取消上一次事件，开启新定时器），如窗口变化、搜索框联想">
 <meta property="og:type" content="article">
-<meta property="og:title" content="vue.js 学习笔记">
-<meta property="og:url" content="http://example.com/2021/03/29/vuejs%20learning/index.html">
+<meta property="og:title" content="JS 防抖和节流">
+<meta property="og:url" content="http://example.com/2021/04/03/debounce%20and%20throttle/index.html">
 <meta property="og:site_name" content="Nobody can save you but yourself">
-<meta property="og:description" content="vue框架vue">
+<meta property="og:description" content="防抖:减少事件的触发, 一段时间内只有一次触发（在产生事件时取消上一次事件，开启新定时器），如窗口变化、搜索框联想">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2021-03-29T11:32:44.000Z">
-<meta property="article:modified_time" content="2021-03-29T11:41:15.738Z">
+<meta property="article:published_time" content="2021-04-03T14:22:14.000Z">
+<meta property="article:modified_time" content="2021-04-03T14:23:05.708Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
   
@@ -73,10 +73,10 @@
 </header>
 
       <div class="outer">
-        <section id="main"><article id="post-vuejs learning" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+        <section id="main"><article id="post-debounce and throttle" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2021/03/29/vuejs%20learning/" class="article-date">
-  <time class="dt-published" datetime="2021-03-29T11:32:44.000Z" itemprop="datePublished">2021-03-29</time>
+    <a href="/2021/04/03/debounce%20and%20throttle/" class="article-date">
+  <time class="dt-published" datetime="2021-04-03T14:22:14.000Z" itemprop="datePublished">2021-04-03</time>
 </a>
     
   </div>
@@ -87,7 +87,7 @@
         
   
     <h1 class="p-name article-title" itemprop="headline name">
-      vue.js 学习笔记
+      JS 防抖和节流
     </h1>
   
 
@@ -95,12 +95,23 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h2 id="vue框架"><a href="#vue框架" class="headerlink" title="vue框架"></a>vue框架</h2><p>vue</p>
+        <h4 id="防抖"><a href="#防抖" class="headerlink" title="防抖:"></a>防抖:</h4><p>减少事件的触发, 一段时间内只有一次触发（在产生事件时取消上一次事件，开启新定时器），如窗口变化、搜索框联想</p>
+<p><escape><span id="more"></span></escape></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">let timer &#x3D; null;</span><br><span class="line">aElement.click &#x3D; function&#123;</span><br><span class="line">  clearTimeout(time);</span><br><span class="line">  timer &#x3D; setTimeout(() &#x3D;&gt; &#123;</span><br><span class="line">    console.log(&quot;debounce successfully&quot;)</span><br><span class="line">  &#125;, 1000)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<br/>
+
+<h4 id="节流"><a href="#节流" class="headerlink" title="节流"></a>节流</h4><p>减少事件的触发, 降低触发频率（在产生事件时判断节流阀，成立时（true）把节流阀设置为不成立（false）, 触发事件, 开启新计时器重置节流阀（true）)</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> flag = <span class="literal">true</span>;</span><br><span class="line"><span class="keyword">if</span>(flag)&#123;</span><br><span class="line">  flag = <span class="literal">false</span>;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&quot;throttle successfully&quot;</span>);</span><br><span class="line">  <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    flag = <span class="literal">true</span>;</span><br><span class="line">  &#125;, <span class="number">1000</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<br/>
+
+<p>前往 <a target="_blank" rel="noopener" href="https://www.lodashjs.com/">https://www.lodashjs.com/</a> 获取封装好的方法: <em>.debounce、</em>.throttle（利用script标签引用网站的lodash.js文件）</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/03/29/vuejs%20learning/" data-id="ckn1ttow20006ekvygxzpdgkh" data-title="vue.js 学习笔记" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/04/03/debounce%20and%20throttle/" data-id="ckn1ttovv0001ekvyb91cc9kx" data-title="JS 防抖和节流" class="article-share-link">Share</a>
       
       
       
@@ -110,19 +121,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2021/03/29/flex%20use/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          flex布局 用法记录
-        
-      </div>
-    </a>
   
-  
-    <a href="/2021/03/29/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2021/04/03/deepcopy%20and%20shallowcopy/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Hello World</div>
+      <div class="article-nav-title">JS 浅拷贝和深拷贝</div>
     </a>
   
 </nav>
