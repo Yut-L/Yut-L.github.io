@@ -71,6 +71,52 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-js event loop" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/04/06/js%20event%20loop/" class="article-date">
+  <time class="dt-published" datetime="2021-04-06T07:37:55.000Z" itemprop="datePublished">2021-04-06</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/04/06/js%20event%20loop/">JS 事件循环</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h4 id="事件循环的三个部分："><a href="#事件循环的三个部分：" class="headerlink" title="事件循环的三个部分："></a>事件循环的三个部分：</h4><h4 id="调用栈call-stack"><a href="#调用栈call-stack" class="headerlink" title="调用栈call stack"></a>调用栈call stack</h4><p>循环开始后从全局栈开始一行一行执行，遇到函数调用就压入调用栈中（压入的函数称为帧frame）,函数返回后从调用栈弹出</p>
+<h4 id="消息队列message-quene"><a href="#消息队列message-quene" class="headerlink" title="消息队列message quene"></a>消息队列message quene</h4><p>Promise的异步回调、setTimeout、setInterval、setlmmediate等异步操作的回调函数会入队到消息队列，在调用栈清空后执行（一个循环结束后）</p>
+<h4 id="微任务队列microtask-quene"><a href="#微任务队列microtask-quene" class="headerlink" title="微任务队列microtask quene"></a>微任务队列microtask quene</h4><p>Promise then的内容、await、axios、MutationObserver等操作会入队到微任务队列，在调用栈清空时立即执行，处理时新加入的微任务也一起执行（一个循环结束时）</p>
+<p><escape>
+        
+          <p class="article-more-link">
+            <a href="/2021/04/06/js%20event%20loop/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/04/06/js%20event%20loop/" data-id="ckn5pojdi00088ovycj922sah" data-title="JS 事件循环" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-debounce and throttle" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2021/04/03/debounce%20and%20throttle/" class="article-date">
@@ -103,7 +149,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/04/03/debounce%20and%20throttle/" data-id="ckn1v05lf0000wsvy1zhzb6ek" data-title="JS 防抖和节流" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/04/03/debounce%20and%20throttle/" data-id="ckn5pojdb00028ovygxby6yvy" data-title="JS 防抖和节流" class="article-share-link">Share</a>
       
       
       
@@ -149,7 +195,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/04/03/deepcopy%20and%20shallowcopy/" data-id="ckn1v05lq0003wsvy3vyg0hjd" data-title="JS 浅拷贝和深拷贝" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/04/03/deepcopy%20and%20shallowcopy/" data-id="ckn5pojdd00038ovyf5un8a50" data-title="JS 浅拷贝和深拷贝" class="article-share-link">Share</a>
       
       
       
@@ -195,7 +241,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/04/01/about%20the%20CORS/" data-id="ckn1v05lj0001wsvyarbha9cw" data-title="跨域（Cross-origin resource sharing）相关" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/04/01/about%20the%20CORS/" data-id="ckn5pojd800018ovyfam4hmf1" data-title="跨域（Cross-origin resource sharing）相关" class="article-share-link">Share</a>
       
       
       
@@ -242,7 +288,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/03/31/html%20semantic%20meaning/" data-id="ckn1v05ls0006wsvy4yct9r5t" data-title="关于HTML语义化" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/03/31/html%20semantic%20meaning/" data-id="ckn5pojdh00068ovycwvehuyx" data-title="关于HTML语义化" class="article-share-link">Share</a>
       
       
       
@@ -288,7 +334,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/03/29/flex%20use/" data-id="ckn1v05lp0002wsvycgatgmgr" data-title="flex布局 用法记录" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/03/29/flex%20use/" data-id="ckn5pojde00048ovybr3uavkj" data-title="flex布局 用法记录" class="article-share-link">Share</a>
       
       
       
@@ -327,7 +373,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/03/29/vuejs%20learning/" data-id="ckn1v05lr0005wsvycor0gaal" data-title="vue.js 学习笔记" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/03/29/vuejs%20learning/" data-id="ckn5pojdi00078ovy71pu1zyy" data-title="vue.js 学习笔记" class="article-share-link">Share</a>
       
       
       
@@ -366,7 +412,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/03/29/hello-world/" data-id="ckn1v05lr0004wsvygqonadhi" data-title="Hello World" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/03/29/hello-world/" data-id="ckn5pojdf00058ovyd12z47j0" data-title="Hello World" class="article-share-link">Share</a>
       
       
       
@@ -409,6 +455,10 @@
       <ul>
         
           <li>
+            <a href="/2021/04/06/js%20event%20loop/">JS 事件循环</a>
+          </li>
+        
+          <li>
             <a href="/2021/04/03/debounce%20and%20throttle/">JS 防抖和节流</a>
           </li>
         
@@ -422,10 +472,6 @@
         
           <li>
             <a href="/2021/03/31/html%20semantic%20meaning/">关于HTML语义化</a>
-          </li>
-        
-          <li>
-            <a href="/2021/03/29/flex%20use/">flex布局 用法记录</a>
           </li>
         
       </ul>

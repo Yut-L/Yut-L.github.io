@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>JS 事件循环 | Nobody can save you but yourself</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="事件循环的三个部分：调用栈call stack循环开始后从全局栈开始一行一行执行，遇到函数调用就压入调用栈中（压入的函数称为帧frame）,函数返回后从调用栈弹出 消息队列message quenePromise的异步回调、setTimeout、setInterval、setlmmediate等异步操作的回调函数会入队到消息队列，在调用栈清空后执行（一个循环结束后） 微任务队列microtask">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS 事件循环">
+<meta property="og:url" content="http://example.com/2021/04/06/js%20event%20loop/index.html">
+<meta property="og:site_name" content="Nobody can save you but yourself">
+<meta property="og:description" content="事件循环的三个部分：调用栈call stack循环开始后从全局栈开始一行一行执行，遇到函数调用就压入调用栈中（压入的函数称为帧frame）,函数返回后从调用栈弹出 消息队列message quenePromise的异步回调、setTimeout、setInterval、setlmmediate等异步操作的回调函数会入队到消息队列，在调用栈清空后执行（一个循环结束后） 微任务队列microtask">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-04-06T07:37:55.000Z">
+<meta property="article:modified_time" content="2021-04-06T07:38:00.281Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Nobody can save you but yourself" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Nobody can save you but yourself</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-js event loop" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/04/06/js%20event%20loop/" class="article-date">
+  <time class="dt-published" datetime="2021-04-06T07:37:55.000Z" itemprop="datePublished">2021-04-06</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      JS 事件循环
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h4 id="事件循环的三个部分："><a href="#事件循环的三个部分：" class="headerlink" title="事件循环的三个部分："></a>事件循环的三个部分：</h4><h4 id="调用栈call-stack"><a href="#调用栈call-stack" class="headerlink" title="调用栈call stack"></a>调用栈call stack</h4><p>循环开始后从全局栈开始一行一行执行，遇到函数调用就压入调用栈中（压入的函数称为帧frame）,函数返回后从调用栈弹出</p>
+<h4 id="消息队列message-quene"><a href="#消息队列message-quene" class="headerlink" title="消息队列message quene"></a>消息队列message quene</h4><p>Promise的异步回调、setTimeout、setInterval、setlmmediate等异步操作的回调函数会入队到消息队列，在调用栈清空后执行（一个循环结束后）</p>
+<h4 id="微任务队列microtask-quene"><a href="#微任务队列microtask-quene" class="headerlink" title="微任务队列microtask quene"></a>微任务队列microtask quene</h4><p>Promise then的内容、await、axios、MutationObserver等操作会入队到微任务队列，在调用栈清空时立即执行，处理时新加入的微任务也一起执行（一个循环结束时）</p>
+<p><escape><span id="more"></span></escape></p>
+<br/>
+
+<h4 id="示例代码"><a href="#示例代码" class="headerlink" title="示例代码:"></a>示例代码:</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> p = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="params">resolve</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="number">4</span>);</span><br><span class="line">  resolve(<span class="number">5</span>);</span><br><span class="line">&#125;);</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fun1</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fun2</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="number">2</span>);</span><br><span class="line">  &#125;);</span><br><span class="line">  fun1();</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="number">3</span>);</span><br><span class="line">  p.then(<span class="function"><span class="params">resolved</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(resolved)</span><br><span class="line">  &#125;)</span><br><span class="line">  .then(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="number">6</span>)</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line">fun2();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 打印顺序为413562</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/04/06/js%20event%20loop/" data-id="ckn5pojdi00088ovycj922sah" data-title="JS 事件循环" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2021/04/03/debounce%20and%20throttle/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">JS 防抖和节流</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">April 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/04/06/js%20event%20loop/">JS 事件循环</a>
+          </li>
+        
+          <li>
+            <a href="/2021/04/03/debounce%20and%20throttle/">JS 防抖和节流</a>
+          </li>
+        
+          <li>
+            <a href="/2021/04/03/deepcopy%20and%20shallowcopy/">JS 浅拷贝和深拷贝</a>
+          </li>
+        
+          <li>
+            <a href="/2021/04/01/about%20the%20CORS/">跨域（Cross-origin resource sharing）相关</a>
+          </li>
+        
+          <li>
+            <a href="/2021/03/31/html%20semantic%20meaning/">关于HTML语义化</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
