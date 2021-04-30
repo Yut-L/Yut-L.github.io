@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>浏览器运行原理 | Nobody can save you but yourself</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="用户界面展示除标签页窗口外的其它用户界面内容 浏览器引擎在用户界面和渲染引擎之间传递数据 渲染引擎（内核）渲染用户请求的页面内容">
+<meta property="og:type" content="article">
+<meta property="og:title" content="浏览器运行原理">
+<meta property="og:url" content="http://example.com/2021/04/15/browser%20works/index.html">
+<meta property="og:site_name" content="Nobody can save you but yourself">
+<meta property="og:description" content="用户界面展示除标签页窗口外的其它用户界面内容 浏览器引擎在用户界面和渲染引擎之间传递数据 渲染引擎（内核）渲染用户请求的页面内容">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-04-15T06:03:43.000Z">
+<meta property="article:modified_time" content="2021-04-30T06:04:03.112Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Nobody can save you but yourself" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Nobody can save you but yourself</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-browser works" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/04/15/browser%20works/" class="article-date">
+  <time class="dt-published" datetime="2021-04-15T06:03:43.000Z" itemprop="datePublished">2021-04-15</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      浏览器运行原理
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h4 id="用户界面"><a href="#用户界面" class="headerlink" title="用户界面"></a>用户界面</h4><p>展示除标签页窗口外的其它用户界面内容</p>
+<h4 id="浏览器引擎"><a href="#浏览器引擎" class="headerlink" title="浏览器引擎"></a>浏览器引擎</h4><p>在用户界面和渲染引擎之间传递数据</p>
+<h4 id="渲染引擎（内核）"><a href="#渲染引擎（内核）" class="headerlink" title="渲染引擎（内核）"></a>渲染引擎（内核）</h4><p>渲染用户请求的页面内容</p>
+<p><escape><span id="more"></span></escape></p>
+<br/>
+
+<p>当启动某个程序时，系统会创建一个进程来执行任务代码，同时会为该进程分配内存空间，该应用程序的状态都保存在该内存空间里。当应用关闭时，该内存空间就会被回收。进程可以启动更多的进程来执行任务，由于每个进程分配的内存空间是独立的，如果两个进程间需要传递某些数据，则需要通过进程间通信管道 IPC 来传递。很多应用程序都是多进程的结构，这样是为了避免某一个进程卡死的时候，由于进程间相互独立，不会影响到整个应用程序。进程可以将任务分成多个更细小的任务，然后通过创建多个线程，并行执行不同的任务。同一进程下的线程之间是可以直接通信共享数据的。<br><br/></p>
+<p>早期的浏览器并不是多进程的结构，而是个单进程结构。单进程结构引发的问题:</p>
+<p>（1）不稳定，其中一个线程的卡死可能会导致整个进程出问题，比如打开多个标签页，有一个标签页卡死，可能会导致整个浏览器无法正常运行。</p>
+<p>（2）不安全，线程之间是可以共享数据的，线程可以随意访问进程内的数据。</p>
+<p>（3）不流畅，一个进程需要负责太多事情，影响运行效率。</p>
+<br/>
+
+<p>多进程浏览器结构: 根据进程功能不同来拆解浏览器，如网络进程负责发起接受网络请求，GPU 进程负责图形渲染，插件进程负责控制网站使用的所有插件（例如 Flash ），渲染器进程用来控制显示tab标签内的所有内容。</p>
+<p>浏览器（ chrome 为例）在默认情况下会为每个标签页都创建一个进程: 为用户访问的网站的每个实例创建一个渲染器进程。这样可以确保来自不同站点的页面是独立呈现的，并且对同一站点的单独访问也是彼此隔离的。简单来说就是访问不同站点和同一站点的不同页面都会创建新进程。如果网页中嵌入了 iframe ，        chrome 会出于安全考虑为每个 iframe 都创建了一个进程，通过多进程让当前的主站点和 iframe 里的站点之间隔离。</p>
+<br/>
+
+<p>四种进程模型（文档地址: <a target="_blank" rel="noopener" href="https://www.chromium.org/developers/design-documents/process-models">https://www.chromium.org/developers/design-documents/process-models</a> ）: </p>
+<p>默认的 Process-per-site-instance</p>
+<p>Process-per-site: 同一站点使用同一进程。</p>
+<p>Process-per-tab: 一个tab里的所有站点使用一个进程。</p>
+<p>Single process: 让浏览器引擎和渲染器引擎共用一个进程。</p>
+<p>Process-per-site-instance 模型会创建更多的进程占用更多的内存空间，但最安全。每个标签，以及标签内的每个站点都是相互隔离互不影响的。当其中一个标签页里渲染器进程卡死，并不会影响其他标签。</p>
+<br/>
+
+<h4 id="浏览器渲染原理"><a href="#浏览器渲染原理" class="headerlink" title="浏览器渲染原理"></a>浏览器渲染原理</h4><p>当在地址栏输入地址时，浏览器进程的 UI 线程会捕捉输入内容，如果访问的是网址，则 UI 线程会启动一个网络线程来请求 DNS 进行域名解析接着开始连接服务器获取数据。如果输入的是一串关键词，就会使用默认配置的搜索引擎来查询。</p>
+<p>当网络线程获取到数据后，会通过 SafeBrowsing （谷歌内部的一套站点安全系统，通过检测该站点的数据来判断是否安全，比如通过查看该站点的 ip 是否在他们的黑名单内）来检查该站点的是否是恶意站点。如果是则会展示个警告页面，告诉你这个站点有安全问题，浏览器会阻止你的访问。当然也可以强行继续访问。</p>
+<p>当返回数据准备完毕并且安全校验通过，网络线程会通知 UI 线程，然后 UI 线程会创建一个渲染器进程来渲染页面。浏览器进程通过 IPC 管道将数据（ html ）传递给渲染器进程，正式进入渲染流程。渲染器进程的核心任务就是把 html 、 js 、 css 、 img 等资源渲染成用户可交互的web页面。此时地址栏的状态更新，比如 histroy 更新，现在可以点击导航栏的后退。</p>
+<p>渲染器进程的主线程将 html 进行解析，构造 DOM 数据结构。 DOM 文档对象模型是浏览器对页面在其内部表示形式，是 Web 程序员可以通过 JavaScript 与之交互的数据结构和 API 。 HTML 首先经过 Tokeniser 标记化，通过词法分析，将输入 html 内容解析成多个标记，根据识别后的标记进行 DOM 树构造, 在 DOM 树构造过程中会创建 Document 对象，然后以 Document 为根节点的DOM树不断进行修改，向其中添加各种元素。</p>
+<p>HTML 代码中往往会引入一些额外的资源，比如图片， css 和 js 脚本等。图片和 css 这些资源需要通过网络下载或者从缓存中直接加载。这些资源不会阻塞 html 的解析，因为他们不会影响 DOM 的生成，但当 html 解析过程中遇到script标签，将停止 html 解析流程，转而去加载解析并且执行 js （浏览器不知道 js 的执行是否会改变当前页面的 html 的结构，比如 js 代码了调用 document.write 方法来修改 html ，那之前的 html 的解析就失去意义，所以要把 script 标签要放在合适的位置，或者使用 async 或 defer 属性来异步加载执行 js ）。</p>
+<br/>
+
+<p>在 html 解析完成后，我们就获得一个 dom tree ，但我们还不知道 dom tree 上每个节点应该长什么样。主线程需要解析 css 并确定每个 DOM 节点的 css 样式（浏览器有自己的默认的样式表）。</p>
+<br/>
+
+
+<p>在知道 dom 结构和每个节点的样式后，需要知道每个节点需要放在页面上的哪个位置，也就是节点的坐标，以及该节点需要占用多大的区域。</p>
+<p>这个阶段被称为 layout 布局，主线程通过遍历 DOM 和计算好的样式来生成 layout tree ， layout tree 上的每个节点都记录 x 、 y 坐标和边框尺寸。因为 DOM 是通过 html 解析获得，并不关心样式。而 layout tree 是根据 dom tree 和计算好的样式来生成， layout tree 是和最后展示在屏幕上的的节点是对应的。所以 DOM Tree 和 layout tree 并不是一一对应的，设置了 display: none 的节点不会出现在 layout tree 上，而在 before 伪类中添加了 content 值的元素， content 的内容会出现在 layout tree ，不会出现在 DOM 树里。</p>
+<br/>
+
+
+<p>已经知道元素的大小，形状和位置后还需要知道绘制各个节点的顺序。例: z-index 这个属性会影响节点绘制的层级关系。如果按照 dom 的层级结构来绘制页面，则会导致错误的渲染。</p>
+<p>所以为了保证在屏幕上展示正确的层级，在绘制阶段，主线程遍历 layout tree 创建一个绘制记录表，该表记录了绘制的顺序。</p>
+<p>知道了文档的绘制顺序后就到了该把这些信息转化成像素点显示在屏幕上了。这种行为，被称为栅格化（ rasterizing ）。浏览器最早使用了一种很简单的方式，只栅格化用户可视区域的内容，当用户滚动页面时，再栅格化更多的内容来填充缺失的部分，这种方式会导致展示延迟。随着不断的优化升级，现在使用了一种更复杂的栅格化流程，叫做 compositing 组合: 一种将页面的各个部分分成多个图层，分别对其进行栅格化并在合成器线程 compositor thread 的单独线程中进行合成页面的技术。简单来说就是页面所有的元素按照某种规则进行分图层，并把图层都栅格化，然后只需要把可视区的内容组合成一帧展示给用户。</p>
+<p>主线程遍历 layout tree 生成 layer tree ，当 layer tree 生成完毕和绘制顺序确定后，主线程将这些信息传递给 compositor 线程。合成器线程将每个图层栅格化。一层可能像页面的整个长度一样大，因此合成器线程将它们切分为多个图块，然后将每个图块发送给栅格线程。</p>
+<p>栅格线程栅格化每个图块并将它们存储在 GPU 内存中。对图块进行栅格化后合成器线程可以给不同的栅格线程分别优先级，比如栅格化可视区域图块的栅格线程优先处理。</p>
+<p>当图块栅格化完成后，合成器线程将收集称为 draw quads 图块信息，这些信息里记录了包含诸如图块在内存中的位置和在页面的哪个位置绘制图块的信息。根据这些数据合成器线程生成了一个合成器 frame 。然后 frame 通过 IPC 传送给浏览器进程，</p>
+<p>接着浏览器进程将 compositor frame 传到 GPU ，然后 GPU 渲染展示到屏幕上。于是你终于看到了页面内容。当页面发生变化，比如你滚动了当前页面，则会生成一个新的 compositor frame ，新的 frame 再传给 GPU 。再次渲染到屏幕上。</p>
+<br/>
+
+<p>重排：当我们改变一个尺寸位置属性时，会重新进行样式计算，布局，绘制，以及后面的所有流程。</p>
+<p>重绘：当我们改变某个元素的颜色属性时，不会重新触发布局，但还是触发会样式计算和绘制。</p>
+<p>重排和重绘会占用主线程，还有一个东西的运行也是在主线程。对， js 。既然他们都是在主线程就会出现抢占执行时间的问题。</p>
+<p>如果写了个不断导致重绘重排的动画，浏览器则需要在每一帧都会运行样式计算、布局和绘制的操作，当页面以每秒大于60帧的刷新率刷新，用户才不会感觉到页面卡顿。</p>
+<p>如果在运行动画时，有大量的 js 任务需要执行，因为布局绘制和 js 的执行都是在主线程运行的，当在一帧的时间内，布局和绘制结束后，还有剩余时间， js 就会拿到主线程的使用权，如果 js 执行时间过长就会导致在下一帧开始时， js 没有及时归还主线程，导致下一帧动画没有按时渲染，就会出现页面动画的卡顿。优化手段: </p>
+<p>第一种：就是可以通过 requestAnimationFrame 这个 api 来帮助我们解决这个问题。 requestAnimationFrame 这个方法会在每一帧被调用，通过这个 api 的回调参数，我们可以知道每一帧当前还剩余的，我们可以把 js 运行任务分成一些小块，在时间用完前，归还主线程。</p>
+<p>第二种：栅格化整个流程是不占用主线程的，只在合成器和栅格线程中运行，这就意味着它无需和 js 抢夺的主线程。刚才提到，如果我们反复重绘和重排，可能会导致掉帧，因为有可能会有 js 的执行阻塞了主线程。 css 中有个动画属性叫 transform ，通过该属性实现的动画，不会经过布局和绘制，而是直接运行在 compositor 和 rasterizing 线程中，所以不会受到主线程中js执行的影响。更重要的是 transform 的动画，由于不需要经过布局绘制样式计算，所以节省了很多运算时间。可以让复杂的动画更加流畅。我们常常会哪些属性来实现动画效果呢，位置变化，宽高变化，那这些都可以使用 transform 来代替。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/04/15/browser%20works/" data-id="cko3wz29p0003lwvy6j4whot6" data-title="浏览器运行原理" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2021/04/06/js%20event%20loop/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">JS 事件循环</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">April 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/04/15/browser%20works/">浏览器运行原理</a>
+          </li>
+        
+          <li>
+            <a href="/2021/04/06/js%20event%20loop/">JS 事件循环</a>
+          </li>
+        
+          <li>
+            <a href="/2021/04/03/debounce%20and%20throttle/">JS 防抖和节流</a>
+          </li>
+        
+          <li>
+            <a href="/2021/04/03/deepcopy%20and%20shallowcopy/">JS 浅拷贝和深拷贝</a>
+          </li>
+        
+          <li>
+            <a href="/2021/04/01/about%20the%20CORS/">跨域（Cross-origin resource sharing）相关</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

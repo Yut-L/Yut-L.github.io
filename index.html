@@ -71,6 +71,52 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-browser works" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/04/15/browser%20works/" class="article-date">
+  <time class="dt-published" datetime="2021-04-15T06:03:43.000Z" itemprop="datePublished">2021-04-15</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/04/15/browser%20works/">浏览器运行原理</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h4 id="用户界面"><a href="#用户界面" class="headerlink" title="用户界面"></a>用户界面</h4><p>展示除标签页窗口外的其它用户界面内容</p>
+<h4 id="浏览器引擎"><a href="#浏览器引擎" class="headerlink" title="浏览器引擎"></a>浏览器引擎</h4><p>在用户界面和渲染引擎之间传递数据</p>
+<h4 id="渲染引擎（内核）"><a href="#渲染引擎（内核）" class="headerlink" title="渲染引擎（内核）"></a>渲染引擎（内核）</h4><p>渲染用户请求的页面内容</p>
+<p><escape>
+        
+          <p class="article-more-link">
+            <a href="/2021/04/15/browser%20works/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/04/15/browser%20works/" data-id="cko3wz29p0003lwvy6j4whot6" data-title="浏览器运行原理" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-js event loop" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2021/04/06/js%20event%20loop/" class="article-date">
@@ -93,9 +139,7 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h4 id="事件循环的三个部分："><a href="#事件循环的三个部分：" class="headerlink" title="事件循环的三个部分："></a>事件循环的三个部分：</h4><h4 id="调用栈call-stack"><a href="#调用栈call-stack" class="headerlink" title="调用栈call stack"></a>调用栈call stack</h4><p>循环开始后从全局栈开始一行一行执行，遇到函数调用就压入调用栈中（压入的函数称为帧frame）,函数返回后从调用栈弹出</p>
-<h4 id="消息队列message-quene"><a href="#消息队列message-quene" class="headerlink" title="消息队列message quene"></a>消息队列message quene</h4><p>Promise的异步回调、setTimeout、setInterval、setlmmediate等异步操作的回调函数会入队到消息队列，在调用栈清空后执行（一个循环结束后）</p>
-<h4 id="微任务队列microtask-quene"><a href="#微任务队列microtask-quene" class="headerlink" title="微任务队列microtask quene"></a>微任务队列microtask quene</h4><p>Promise then的内容、await、axios、MutationObserver等操作会入队到微任务队列，在调用栈清空时立即执行，处理时新加入的微任务也一起执行（一个循环结束时）</p>
+        <h4 id="关于-JS-异步"><a href="#关于-JS-异步" class="headerlink" title="关于 JS 异步"></a>关于 JS 异步</h4><p>js 作为浏览器端的脚本语言，主要的用途为用户与服务端的交互与操作 dom 。而操作 dom 就注定了 js 只能是单线程语言，假如多个线程同时对一个 dom 进行操作则浏览器无法判断如何渲染。（在浏览器中 js 引擎负责解释和执行JavaScript代码的线程只有一个）。单线程就意味着，所有任务需要排队，前一个任务结束，才会执行后一个任务。同步会阻塞代码的执行，而异步不会。事件循环（event  loop）是  js 异步的实现方式。</p>
 <p><escape>
         
           <p class="article-more-link">
@@ -105,7 +149,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/04/06/js%20event%20loop/" data-id="ckn5pzydd0008m4vy00ze9iw3" data-title="JS 事件循环" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/04/06/js%20event%20loop/" data-id="cko3wz29w0009lwvyhlc7es6w" data-title="JS 事件循环" class="article-share-link">Share</a>
       
       
       
@@ -149,7 +193,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/04/03/debounce%20and%20throttle/" data-id="ckn5pzyd10002m4vydmrn9cls" data-title="JS 防抖和节流" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/04/03/debounce%20and%20throttle/" data-id="cko3wz29q0004lwvyf0lfa3ne" data-title="JS 防抖和节流" class="article-share-link">Share</a>
       
       
       
@@ -195,7 +239,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/04/03/deepcopy%20and%20shallowcopy/" data-id="ckn5pzyd30004m4vyg7xxef6j" data-title="JS 浅拷贝和深拷贝" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/04/03/deepcopy%20and%20shallowcopy/" data-id="cko3wz29r0005lwvy8xuwfmle" data-title="JS 浅拷贝和深拷贝" class="article-share-link">Share</a>
       
       
       
@@ -241,7 +285,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/04/01/about%20the%20CORS/" data-id="ckn5pzycw0000m4vyf12s6w11" data-title="跨域（Cross-origin resource sharing）相关" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/04/01/about%20the%20CORS/" data-id="cko3wz29k0001lwvyeltf308a" data-title="跨域（Cross-origin resource sharing）相关" class="article-share-link">Share</a>
       
       
       
@@ -288,7 +332,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/03/31/html%20semantic%20meaning/" data-id="ckn5pzyd50006m4vy7yzmebt0" data-title="关于HTML语义化" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/03/31/html%20semantic%20meaning/" data-id="cko3wz29v0008lwvy0euc4hhw" data-title="关于HTML语义化" class="article-share-link">Share</a>
       
       
       
@@ -334,7 +378,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/03/29/flex%20use/" data-id="ckn5pzyd30003m4vyc157clau" data-title="flex布局 用法记录" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/03/29/flex%20use/" data-id="cko3wz29s0006lwvyhh02e8u8" data-title="flex布局 用法记录" class="article-share-link">Share</a>
       
       
       
@@ -373,7 +417,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/03/29/vuejs%20learning/" data-id="ckn5pzyd70007m4vy38r17x0a" data-title="vue.js 学习笔记" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/03/29/vuejs%20learning/" data-id="cko3wz29w000alwvy54gg17je" data-title="vue.js 学习笔记" class="article-share-link">Share</a>
       
       
       
@@ -412,7 +456,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/03/29/hello-world/" data-id="ckn5pzyd40005m4vy8j9ncrmj" data-title="Hello World" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/03/29/hello-world/" data-id="cko3wz29t0007lwvy37oi1t6g" data-title="Hello World" class="article-share-link">Share</a>
       
       
       
@@ -455,6 +499,10 @@
       <ul>
         
           <li>
+            <a href="/2021/04/15/browser%20works/">浏览器运行原理</a>
+          </li>
+        
+          <li>
             <a href="/2021/04/06/js%20event%20loop/">JS 事件循环</a>
           </li>
         
@@ -468,10 +516,6 @@
         
           <li>
             <a href="/2021/04/01/about%20the%20CORS/">跨域（Cross-origin resource sharing）相关</a>
-          </li>
-        
-          <li>
-            <a href="/2021/03/31/html%20semantic%20meaning/">关于HTML语义化</a>
           </li>
         
       </ul>
