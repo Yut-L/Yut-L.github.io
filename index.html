@@ -95,23 +95,16 @@
       
         <h4 id="数组去重方法："><a href="#数组去重方法：" class="headerlink" title="数组去重方法："></a>数组去重方法：</h4><h5 id="1-set"><a href="#1-set" class="headerlink" title="1. set"></a>1. set</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> result = [...new <span class="built_in">Set</span>(arr)]</span><br></pre></td></tr></table></figure>
 
-<h5 id="2-indexOf"><a href="#2-indexOf" class="headerlink" title="2. indexOf"></a>2. indexOf</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> result = [];</span><br><span class="line"></span><br><span class="line">arr.forEach(<span class="function"><span class="params">item</span> =&gt;</span> &#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span>(result.indexOf(item == -<span class="number">1</span>)&#123;</span><br><span class="line"></span><br><span class="line">    result.push(item);</span><br><span class="line"></span><br><span class="line">  &#125;)</span><br><span class="line"></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-<h5 id="3-filter、indexOf"><a href="#3-filter、indexOf" class="headerlink" title="3. filter、indexOf"></a>3. filter、indexOf</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> result = arr.filter(<span class="function">(<span class="params">item, index</span>) =&gt;</span> &#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> arr.indexOf(item) === index;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h5 id="4-reduce"><a href="#4-reduce" class="headerlink" title="4. reduce"></a>4. reduce</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> result = arr.reduce(<span class="function">(<span class="params">pre, item</span>) =&gt;</span> &#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> pre.includes(item) ? pre : [...pre, item]</span><br><span class="line"></span><br><span class="line">&#125;, []);</span><br></pre></td></tr></table></figure>
-
-<h5 id="5-map、Object-keys"><a href="#5-map、Object-keys" class="headerlink" title="5. map、Object.keys()"></a>5. map、Object.keys()</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> result = [];</span><br><span class="line"></span><br><span class="line">arr.forEach(<span class="function">(<span class="params">item, index</span>)  =&gt;</span> &#123;</span><br><span class="line"></span><br><span class="line">  result[arr[index]] = <span class="string">&#x27;value&#x27;</span>;</span><br><span class="line"></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">result = <span class="built_in">Object</span>.keys(result).map(<span class="function"><span class="params">item</span> =&gt;</span> ~~item);</span><br></pre></td></tr></table></figure>
-
-<h5 id="6-for"><a href="#6-for" class="headerlink" title="6. for"></a>6. for</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> result = [];</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> flag;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; arr.length; i ++)&#123;</span><br><span class="line">  </span><br><span class="line">  flag = <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> j = i + <span class="number">1</span>; j &lt; arr.length; j ++)&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (arr[i] === arr[j])&#123;</span><br><span class="line"></span><br><span class="line">      flag = <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">if</span> (!flag)&#123;</span><br><span class="line">      </span><br><span class="line">    result.push(arr[i]);</span><br><span class="line">      </span><br><span class="line">  &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h5 id="7-sort"><a href="#7-sort" class="headerlink" title="7.  sort"></a>7.  sort</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> result = [];</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> temp = arr.sort();</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>;i &lt; temp.length;i ++)&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span>(temp[i] !== temp[i+<span class="number">1</span>])&#123;</span><br><span class="line"></span><br><span class="line">    result.push(arr[i]);</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
+<p><escape>
+        
+          <p class="article-more-link">
+            <a href="/2021/06/16/JS%20array%20deduplication/#more">Read More</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/06/16/JS%20array%20deduplication/" data-id="ckqxzs8zx0001ywvy4hq51m3h" data-title="JS 数组去重" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/06/16/JS%20array%20deduplication/" data-id="ckqxzu55j00014cvyf9jign9t" data-title="JS 数组去重" class="article-share-link">Share</a>
       
       
       
@@ -162,7 +155,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/04/15/how%20networks%20work/" data-id="ckqxzs9090008ywvy8s4shv39" data-title="计算机网络概论 学习笔记" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/04/15/how%20networks%20work/" data-id="ckqxzu55t00084cvyc9kw1ua9" data-title="计算机网络概论 学习笔记" class="article-share-link">Share</a>
       
       
       
@@ -208,7 +201,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/04/15/browser%20works/" data-id="ckqxzs9070006ywvydbe6449w" data-title="浏览器运行原理" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/04/15/browser%20works/" data-id="ckqxzu55p00034cvy0sz15yso" data-title="浏览器运行原理" class="article-share-link">Share</a>
       
       
       
@@ -252,7 +245,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/04/06/js%20event%20loop/" data-id="ckqxzs90a0009ywvyds48h1ap" data-title="JS 事件循环" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/04/06/js%20event%20loop/" data-id="ckqxzu55u000a4cvy2d6shl2n" data-title="JS 事件循环" class="article-share-link">Share</a>
       
       
       
@@ -296,7 +289,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/04/03/debounce%20and%20throttle/" data-id="ckqxzs9050003ywvy7m7h77li" data-title="JS 防抖和节流" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/04/03/debounce%20and%20throttle/" data-id="ckqxzu55q00044cvyhyp5c26h" data-title="JS 防抖和节流" class="article-share-link">Share</a>
       
       
       
@@ -342,7 +335,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/04/03/deepcopy%20and%20shallowcopy/" data-id="ckqxzs9060004ywvyerfngi2t" data-title="JS 浅拷贝和深拷贝" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/04/03/deepcopy%20and%20shallowcopy/" data-id="ckqxzu55r00054cvy3n362m90" data-title="JS 浅拷贝和深拷贝" class="article-share-link">Share</a>
       
       
       
@@ -388,7 +381,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/04/01/about%20the%20CORS/" data-id="ckqxzs9020002ywvyactr1cw6" data-title="跨域（Cross-origin resource sharing）相关" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/04/01/about%20the%20CORS/" data-id="ckqxzu55o00024cvyfvyc1k1j" data-title="跨域（Cross-origin resource sharing）相关" class="article-share-link">Share</a>
       
       
       
@@ -435,7 +428,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/03/31/html%20semantic%20meaning/" data-id="ckqxzs90a000aywvy6ilie622" data-title="关于HTML语义化" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/03/31/html%20semantic%20meaning/" data-id="ckqxzu55u00094cvyah5c360y" data-title="关于HTML语义化" class="article-share-link">Share</a>
       
       
       
@@ -481,7 +474,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/03/29/flex%20use/" data-id="ckqxzs9070005ywvy60t88l96" data-title="flex布局 用法记录" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/03/29/flex%20use/" data-id="ckqxzu55r00064cvy3gvl3l4q" data-title="flex布局 用法记录" class="article-share-link">Share</a>
       
       
       
@@ -520,7 +513,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/03/29/vuejs%20learning(%E5%BE%85/" data-id="ckqxzs90f000bywvyab902o8r" data-title="vue.js 学习笔记" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/03/29/vuejs%20learning(%E5%BE%85/" data-id="ckqxzu55z000b4cvycuk2a1l1" data-title="vue.js 学习笔记" class="article-share-link">Share</a>
       
       
       
