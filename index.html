@@ -104,7 +104,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/06/16/JS%20array%20deduplication/" data-id="ckqy0ndpt000188vyglqdgs7k" data-title="JS 数组去重" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/06/16/JS%20array%20deduplication/" data-id="ckqy0qkbs0001g4vy650if8tg" data-title="JS 数组去重" class="article-share-link">Share</a>
       
       
       
@@ -143,193 +143,16 @@
 <p>var声明范围：函数作用域</p>
 <p>let声明范围：块作用域，声明不会提升，不能依赖条件声明模式</p>
 <p>const 声明时必须初始化变量</p>
-<p>6种原始类型：Undefined、Null、Boolean、Number、String、Symbol</p>
-<p>typeof：确定变量数据类型</p>
-<p>null是一个假值，表示一个空对象指针</p>
-<p>NaN：特殊数值，表示本来要返回数值的操作失败了（而不是抛出错误）</p>
-<p>isNaN：尝试把值转换成数值</p>
-<p>将非数值转换为数值：Number()，parseInt()、parseFloat()</p>
-<p>将值转换成字符串：toString()、String()</p>
-<p>逻辑非 ！，逻辑与 &amp;&amp; ，逻辑或 ||</p>
-<p>等于和不等于（==、!=）：操作符先进行类型转换</p>
-<p>全等和不全等（===，!==）：不转换</p>
-<p>for-in：枚举对象中的非符号键属性</p>
-<p>for-of：遍历可迭代对象的元素</p>
-<p>switch语句：在比较条件值时使用全等操作符</p>
-<h2 id="变量、作用域与内存"><a href="#变量、作用域与内存" class="headerlink" title="变量、作用域与内存"></a>变量、作用域与内存</h2><p>变量可包含：6种原始值、引用值（由多个值构成的对象）</p>
-<p>typeof：判断变量是否为字符串、数值、布尔值或undefined</p>
-<p>instanceof：判断对象的类型</p>
-<p>垃圾回收策略：标记清理、引用计数</p>
-<p>内存泄漏：</p>
-<ul>
-<li>意外声明全局变量</li>
-<li>定时器未清理</li>
-<li>使用闭包</li>
-</ul>
-<p>构造函数：用来创建新对象的函数（使用new操作符）</p>
-<p>为方便操作原始值而提供的3种特殊引用类型：Boolean、Number、String</p>
-<p>Number类型方法：toFixed()、isInteger()</p>
-<p>String类型方法：charAt()、slice()、substr()、substring()、indexOf()、lastIndexOf()、startsWith()、endsWith()、includes()、trim()、trimleft()、trimright()、toLowerCase()、toUpperCase()、padStart()、padEnd()</p>
-<h2 id="集合引用类型"><a href="#集合引用类型" class="headerlink" title="集合引用类型"></a>集合引用类型</h2><h6 id="Array类型："><a href="#Array类型：" class="headerlink" title="Array类型："></a>Array类型：</h6><p>Array.from()、Array.of()、Array.isArray()、keys()、values()、entries()</p>
-<p>copyWithin()：按范围浅复制内容后插入指定位置</p>
-<p>fill()：向数组中插入值（替换）</p>
-<p>join()：改变分隔符</p>
-<p>push()：添加到数组末尾，返回最新长度</p>
-<p>pop()：删除最后一项，返回被删值</p>
-<p>shift()：删除第一项并返回</p>
-<p>unshift()：开头添加任意多个值，返回长度</p>
-<p>排序：reverse()、sort()</p>
-<p>concat()：创建现数组副本，将参数添至末尾，返回新数值</p>
-<p>splice()：</p>
-<ul>
-<li>删除：位置、数量</li>
-<li>插入：位置、数量（0）、参数</li>
-<li>替换：位置、数量、参数</li>
-</ul>
-<p>搜索方法：</p>
-<p>indexof()、lastIndexof()：返回位置/-1</p>
-<p>includes()：返回布尔值</p>
-<p>find()：返回匹配元素</p>
-<p>findIndex()：返回索引</p>
-<p>迭代方法：</p>
-<p>every()：对每一项运行传入的函数，每个返回true则true</p>
-<p>some()：对每一项运行传入的函数，有一个返回true则true</p>
-<p>filter()：对每一项运行传入的函数，返回true的项组成数组返回</p>
-<p>map()：对每一项运行传入的函数，返回每次函数调用的结果组成的数组</p>
-<p>forEach()：对每一项运行传入的函数，没有返回值，相当于使用for循环遍历</p>
-<p>归并：</p>
-<p>reduce()：返回的结果作为下次调用同个函数的第一个参数，最终构建一个返回值（接收参数：上一个归并值、当前项、当前项目索引、数组本身）</p>
-<p>reduceRight()：方向相反（遍历元素的方向）</p>
-<h6 id="Map"><a href="#Map" class="headerlink" title="Map"></a>Map</h6><p>可使用new初始化</p>
-<p>使用set()添加键/值对</p>
-<p>使用get()、has()查询（失败时返回false、undefined）</p>
-<p>使用size()属性获取数量</p>
-<p>使用delete()、clear()删除值</p>
-<p>可使用任何JS数据类型作为键，会维护键值对插入顺序</p>
-<p>选择Map还是Object：</p>
-<p>大量删除操作、内存固定大小下多存储 ——&gt; Map</p>
-<p>大量查找 ——&gt; Object</p>
-<h6 id="Set"><a href="#Set" class="headerlink" title="Set"></a>Set</h6><p>与Map相似</p>
-<p>定义了默认迭代器的原生集合类型：</p>
-<p>Array、定型数组、Map、Set</p>
-<h2 id="对象、类与面向对象编程"><a href="#对象、类与面向对象编程" class="headerlink" title="对象、类与面向对象编程"></a>对象、类与面向对象编程</h2><h6 id="对象："><a href="#对象：" class="headerlink" title="对象："></a>对象：</h6><p>内部特性：不能直接访问，用两个中括号括起来[[…]]，修改方法：Object,defineProperty()</p>
-<p>合并对象：Object.assign()</p>
-<p>可计算属性：动态属性赋值，[]包围，作为JS表达式来求值</p>
-<p>对象解构：</p>
-<ul>
-<li>嵌套解构</li>
-<li>部分解构</li>
-<li>null、undefined不能被解构</li>
-</ul>
-<h6 id="创建对象"><a href="#创建对象" class="headerlink" title="创建对象"></a>创建对象</h6><p>工厂模式：</p>
-<p>解决创建多个类似对象问题</p>
-<p>没有解决对象标识问题（创建的对象是什么类型）</p>
-<p>构造函数模式：</p>
-<p>与工厂模式区别：</p>
-<ul>
-<li>没有显式创建对象</li>
-<li>属性和方法直接赋值给this</li>
-<li>没有return</li>
-</ul>
-<p>原型模式：</p>
-<p>原型对象：定义的属性和方法可以被对象实例共享</p>
-<p>实例通过 __<em>proto__</em> 链接到原型对象</p>
-<p>构造函数通过prototype属性链接到原型对象</p>
-<p>Object.getPrototypeOf()：取得一个对象的原型</p>
-<p>添加同名属性会遮蔽原型对象的同名属性，可通过delete操作符恢复</p>
-<p>hasOwnProperty()：确定某属性在实例上还是在原型对象上</p>
-<p>in操作符：通过对象访问指定属性返回true，无论属性在原型还是实例上</p>
-<p>Object.key()、Object.values()、Object.entries()：接收一个对象，返回对象的可枚举的属性、值、键/值对的数组</p>
-<p>重写构造函数上的原型之后再创建的实例才会引用新的原型。在此之前的实例仍引用最初的原型</p>
-<p>原型模式是实现所有原生引用类型的模式</p>
-<p>产生问题：</p>
-<ul>
-<li>弱化了向构造函数传递初始化参数的能力</li>
-<li>共享特性</li>
-</ul>
-<p>a instanceof b：如果实例（a）的原型链中出现相应的构造函数，则返回true</p>
-<p>b.prototyoe.isPrototypeOf(a)：原型链中的每个原型都可调用这个方法，若包含这个原型（b）则返回true</p>
-<h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><p>定义方式：</p>
-<ul>
-<li>函数声明</li>
-<li>函数表达式</li>
-<li>箭头函数</li>
-<li>Function构造函数</li>
-</ul>
-<p>箭头函数：语法简洁，但不能使用arguments、super、new.target，不能用作构造函数，没有prototype属性</p>
-<p>使用function关键字定义时可访问arguments对象，是一个类数组对象</p>
-<p>arguments的callee属性：指向arguments对象所在函数的指针</p>
-<p>默认参数：按顺序初始化，后面定义的可引用先前定义的，反之不可以</p>
-<p>函数声明提升：函数声明在任何代码执行之前先被读取并添加到执行上下文</p>
-<p>this：</p>
-<ul>
-<li>标准函数中this引用的是把函数当成方法调用的上下文对象</li>
-<li>箭头函数中this引用的是定义箭头函数的上下文</li>
-</ul>
-<p>new.target属性：</p>
-<ul>
-<li>检测函数是否使用new关键字调用</li>
-<li>正常调用则值是undefined</li>
-<li>new调用则值引用被调用的构造函数</li>
-</ul>
-<p>函数的自有属性：length、prototype</p>
-<p>函数的自有方法：</p>
-<p>call()、apply()：将任意对象设置为任意函数的作用域</p>
-<p>bind()：创建新函数实例，其this值绑定传给bind()的对象</p>
-<p>闭包：指引用了另一个函数作用域中的变量的函数</p>
-<p>在一个函数内部定义的函数会把其包含函数的活动对象添加到自己的作用域中</p>
-<p>过度使用闭包可能导致内存过度占用</p>
-<h2 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h2><p>时间流：</p>
-<ul>
-<li>事件冒泡：被点击的元素最先触发事件</li>
-<li>事件捕获：在事件到达最终目标前拦截事件</li>
-</ul>
-<p>事件处理程序的赋值和移除：</p>
-<p>addEventListener()、removeEventListener()：接收三个参数（事件名（类型），处理函数，布尔值（false：冒泡，true：捕获））</p>
-<p>优势：为同一个事件添加多个处理程序</p>
-<p>event对象：传给事件处理函数的唯一参数</p>
-<p>相关属性：</p>
-<p>currentTarget：当前处理程序所在的元素</p>
-<p>Target：事件目标</p>
-<p>type：事件类型</p>
-<p>stopPropagation()：阻止事件流传播</p>
-<p>事件类型：用户界面、焦点、鼠标、滚轮、输入、键盘等</p>
-<p>事件委托：给所有元素共同的祖先节点添加一个事件处理函数（通过判断event.target）</p>
-<p>删除事件处理程序：</p>
-<p>删除某个元素前手工删除某事件处理函数，确保内存被回收</p>
-<p>页面卸载之前删除所有事件处理程序</p>
-<h2 id="优化：最佳实践"><a href="#优化：最佳实践" class="headerlink" title="优化：最佳实践"></a>优化：最佳实践</h2><p>可维护性：</p>
-<ul>
-<li>注释</li>
-<li>变量和函数命名</li>
-<li>变量类型透明化</li>
-<li>解耦HTML/JS、CSS/JS</li>
-<li>尊重对象所有权，不给实例或原型添加方法和属性，不重定义已有的方法，不声明全局变量</li>
-<li>不比较null，用instanceof、typeof检查</li>
-<li>使用常量（URL、重复出现的值）</li>
-</ul>
-<p>性能：</p>
-<ul>
-<li><p>作用域意识：避免全局查找、不使用with语句</p>
-</li>
-<li><p>避免不必要的属性查找（保存相关内容的引用）</p>
-</li>
-<li><p>优化循环（终止条件、循环体…）</p>
-</li>
-<li><p>避免重复解释（JS代码解释JS代码）</p>
-</li>
-<li><p>使用原生方法、switch语句、位操作</p>
-</li>
-<li><p>语句最少化（变量声明、迭代性值、字面量）</p>
-</li>
-<li><p>优化DOM交互（文档碎片、事件委托…）</p>
-</li>
-</ul>
-
+<p><escape>
+        
+          <p class="article-more-link">
+            <a href="/2021/05/21/P%20Js%20learning/#more">Read More</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/05/21/P%20Js%20learning/" data-id="ckqy0ndpv000288vyf7rw4lq8" data-title="JavaScript 红宝书学习笔记" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/05/21/P%20Js%20learning/" data-id="ckqy0qkbv0002g4vy9h5adgjj" data-title="JavaScript 红宝书学习笔记" class="article-share-link">Share</a>
       
       
       
@@ -376,7 +199,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/05/05/html%20semantic%20meaning/" data-id="ckqy0ndq5000988vyb82u5su4" data-title="关于HTML语义化" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/05/05/html%20semantic%20meaning/" data-id="ckqy0qkc2000ag4vy52pg8snd" data-title="关于HTML语义化" class="article-share-link">Share</a>
       
       
       
@@ -427,7 +250,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/04/15/how%20networks%20work/" data-id="ckqy0ndq6000a88vy8xq26ohf" data-title="计算机网络概论 学习笔记" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/04/15/how%20networks%20work/" data-id="ckqy0qkc10009g4vyhefb9po6" data-title="计算机网络概论 学习笔记" class="article-share-link">Share</a>
       
       
       
@@ -473,7 +296,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/04/15/browser%20works/" data-id="ckqy0ndpy000488vy3gkw79vx" data-title="浏览器运行原理" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/04/15/browser%20works/" data-id="ckqy0qkby0004g4vy9pc93dnb" data-title="浏览器运行原理" class="article-share-link">Share</a>
       
       
       
@@ -517,7 +340,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/04/06/js%20event%20loop/" data-id="ckqy0ndq7000b88vy0ra0dzp1" data-title="JS 事件循环" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/04/06/js%20event%20loop/" data-id="ckqy0qkc3000bg4vyh7ai4slg" data-title="JS 事件循环" class="article-share-link">Share</a>
       
       
       
@@ -561,7 +384,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/04/03/debounce%20and%20throttle/" data-id="ckqy0ndpz000588vyfpjp07vr" data-title="JS 防抖和节流" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/04/03/debounce%20and%20throttle/" data-id="ckqy0qkby0005g4vyfnz004e8" data-title="JS 防抖和节流" class="article-share-link">Share</a>
       
       
       
@@ -607,7 +430,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/04/03/deepcopy%20and%20shallowcopy/" data-id="ckqy0ndq0000688vyg78tbxgx" data-title="JS 浅拷贝和深拷贝" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/04/03/deepcopy%20and%20shallowcopy/" data-id="ckqy0qkbz0006g4vy257dbtaf" data-title="JS 浅拷贝和深拷贝" class="article-share-link">Share</a>
       
       
       
@@ -653,7 +476,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/04/01/about%20the%20CORS/" data-id="ckqy0ndpx000388vy1oyq9f5u" data-title="跨域（Cross-origin resource sharing）相关" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/04/01/about%20the%20CORS/" data-id="ckqy0qkbx0003g4vy2dd7h8zi" data-title="跨域（Cross-origin resource sharing）相关" class="article-share-link">Share</a>
       
       
       
@@ -699,7 +522,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/03/29/flex%20use/" data-id="ckqy0ndq0000788vy0c6k45rp" data-title="flex布局 用法记录" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/03/29/flex%20use/" data-id="ckqy0qkc00007g4vygatwdgwy" data-title="flex布局 用法记录" class="article-share-link">Share</a>
       
       
       
