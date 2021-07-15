@@ -99,139 +99,16 @@
 <p>created()：data和methods已经初始化，模板还未编译</p>
 <p>beforeMount()：完成编译，还未挂载</p>
 <p>mounted()：将模板挂载显示</p>
-<p>运行期间</p>
-<p>beforeUpdate()：data状态值更新（数据被修改）之前执行，状态值新，页面值旧</p>
-<p>updated()：状态值和页面值都已完成更新</p>
-<p>销毁期间</p>
-<p>beforeDestroy()：准备销毁，实例属性和方法仍可用</p>
-<p>destroyed()：已经销毁，实例所有内容均不可用</p>
-<img src="https://i.loli.net/2021/07/13/XqGoj67YvUOJWL3.png" style="zoom: 50%;" />
-
-<p>vue.js特点：解耦视图和数据、组件复用、路由状态管理、虚拟DOM</p>
-<p>编程范式：声明式编程</p>
-<p>v-for、v-pre、v-clock、v-bind、v-once、v-html、v-model、v-if、v-else-if、v-else</p>
-<p>v-show和v-if：是否渲染（display: none）和改变样式（不存在于DOM）</p>
-<p>v-on修饰符：.stop .prevent .native .once</p>
-<p>v-model修饰符：.lazy .number .trim</p>
-<p>组件的date是函数：复用时调用同组件的data函数每次返回一个新对象</p>
-<p>runtime-compiler和runtime-only：only模式打包体积更小，但template标签只能写在 .vue文件中</p>
-<p>Babel：工具链，将ECMAScript2015+版本的代码转换为向后兼容的JS语法，以便能运行在当前和旧版本的环境中</p>
-<h2 id="组件通信"><a href="#组件通信" class="headerlink" title="组件通信"></a>组件通信</h2><p>父传子：<br>子组件定义props，props属性里的变量绑定父组件的变量</p>
-<ul>
-<li>数组方式</li>
-<li>对象方式，可指定类型。default：定义默认值；required：为true时表示必传</li>
-<li>指定类型为对象或数组时，默认值从工厂函数获取（default: function() { return {…} }）</li>
-<li>指定值为一定范围：变量名: {validator: function (value) { return [“…”, “…”, “…”].indexof(value) !== -1 }}</li>
-</ul>
-<p>子传父：</p>
-<p>子组件方法内自定义事件a，事件a内添加 this.$emit(“事件a”, 传参)</p>
-<p>父组件调用子组件的标签内监听 @事件a = “事件b” ，然后定义事件b处理</p>
-<p>兄弟组件间：</p>
-<ul>
-<li>子1传父再父传子2</li>
-<li>创建一个js文件，新建并导出一个vue实例（bus）。在需要通信的兄弟组件导入该js文件， 发送使用bus.$emit，接受使用bus.$on</li>
-</ul>
-<h2 id="插槽"><a href="#插槽" class="headerlink" title="插槽"></a>插槽</h2><ul>
-<li>子组件模板内使用&lt;slot&gt;&lt;/slot&gt;，父组件使用子组件标签内添加插槽内容，可在slot标签内添加默认内容</li>
-<li>具名插槽：在slot标签内添加name属性，在替换内容的标签内添加 slot=“name属性名”</li>
-<li>vue模板文件内使用：父组件使用子组件标签内添加的插槽内容格式 &lt;template v-slot: name属性名&gt;&lt;/template&gt;</li>
-</ul>
-<h2 id="computed和watch"><a href="#computed和watch" class="headerlink" title="computed和watch"></a>computed和watch</h2><p>使用computed：</p>
-<ul>
-<li>一个属性是由其他属性计算而来的，依赖于其他属性，是多对一或一对一</li>
-<li>具有缓存功能，在重复的调用中只要依赖数据不变，直接取缓存中的计算结果；当依赖的数据发生改变时才重新计算</li>
-<li>不支持异步，在computed内执行异步操作会报错</li>
-<li>在computed中所有属性都有get()和set()，一般执行get()，当属性被直接修改时执行set()</li>
-</ul>
-<p>使用watch：</p>
-<ul>
-<li>一个数据的变化影响多个数据， 或在变化时需要执行异步操作，可用于监控$route、input输入值</li>
-<li>通过vm对象$watch()或watch()配置监听Vue实例的属性或特定数据的变化，然后执行具体的业务逻辑、操作。当监听内容变化时回调函数自动调用、进行计算，监听数据来源：data、props，computed、$route内的数据</li>
-<li>监听函数可接收两个参数，新值和旧值，或只有新值</li>
-<li>默认为浅监听，若要监听复杂数据类型则在选项参数中指定deep: true （深度监听），但仍然无法监听具体属性的变化，解决方法：1、配合computed使用；2、直接监听对象属性</li>
-<li>在computed中所有属性都有handle方法和immediate属性，immediate为true时立即执行handle方法（本来watch在开始监视（最初绑定）时不执行）</li>
-</ul>
-<h2 id="模块化规范"><a href="#模块化规范" class="headerlink" title="模块化规范"></a>模块化规范</h2><p>CommonJs（需node环境）</p>
-<ul>
-<li>导出：module.exports = {}（导出的是对象）</li>
-<li>导入：let {} = require(“路径”)</li>
-</ul>
-<p>ES6</p>
-<ul>
-<li>导出：export {}</li>
-<li>导入：import {} from “路径” （存在默认导出内容时无需中括号）</li>
-</ul>
-<h2 id="前后端分离："><a href="#前后端分离：" class="headerlink" title="前后端分离："></a>前后端分离：</h2><ul>
-<li>后端渲染：html+css+java ( jsp、php )，后端处理URL和页面的映射关系，服务器渲染页面然后返回客户端浏览器显示，有利于SEO优化，但代码逻辑混乱</li>
-<li>前端渲染（前后端分离）：后端只负责数据（提供API），从静态资源服务器取html+css+js，从提供API接口的服务器获取数据，有其他js代码一起渲染成页面</li>
-<li>单页面富应用：前端路由管理映射关系</li>
-</ul>
-<h2 id="路由映射"><a href="#路由映射" class="headerlink" title="路由映射"></a>路由映射</h2><p>路由重定向：具体某个路由映射关系内添加选项 redirect: “路径”</p>
-<p>路由嵌套：映射关系内添加children选项</p>
-<p>路由懒加载：将路由对应的组件打包成js代码块，被访问时才加载：const 组件名 = () =&gt; import ( “路径” )</p>
-<p>router-link：声明式导航</p>
-<p>this.$route.push(“/“)：编程式导航</p>
-<p>使用：&lt;route-link to=”/about” tag=”button” replace&gt;about页面&lt;/route-link&gt;</p>
-<ul>
-<li><p>replace：不会留下history记录</p>
-</li>
-<li><p>tag：指定route-link渲染成什么组件</p>
-</li>
-</ul>
-<p>路由参数传递：</p>
-<p>1、params类型</p>
-<p>在路由映射关系内添加 path: “/about/:abc”  （abc命名无意义）</p>
-<p>route-link标签内 to=“ ’/about/‘ + b ” </p>
-<p>about组件内添加计算属性 b{ return this.$route.params.a }   其中a的值在父组件data属性内定义</p>
-<p>2、query类型</p>
-<p>route-link标签内  :to=”{ path: “……”, query: {……}}”</p>
-<p>子组件取得数据 $route.query</p>
-<h2 id="导航守卫"><a href="#导航守卫" class="headerlink" title="导航守卫"></a>导航守卫</h2><p>作用：监听全局跳转，具有多种形式：全局、单个路由独享、组件级</p>
-<p>router.beforeEach：全局前置守卫</p>
-<p>router.afterEach：全局后置钩子</p>
-<p>router.beforeResolve：全局解析守卫，在导航被确认之前，同时在所有组件内守卫和异步路由组件被解析之后，解析守卫就被调用</p>
-<p>组件内的守卫</p>
-<ul>
-<li>beforeRouteEnter</li>
-<li>beforeRouteUpdate</li>
-<li>beforeRouteLeave</li>
-</ul>
-<p>完整的导航解析流程</p>
-<ul>
-<li>导航被触发：在失活的组件里调用 beforeRouteLeave</li>
-<li>调用全局的 beforeEach</li>
-<li>在重用的组件里调用 beforeRouteUpdate</li>
-<li>在路由配置里调用 beforeEnter</li>
-<li>在被激活的组件里调用 beforeRouteEnter</li>
-<li>调用全局的 beforeResolve</li>
-<li>导航被确认：调用全局的 afterEach</li>
-<li>调用 beforeRouteEnter 守卫中传给 next 的回调函数，创建好的组件实例会作为回调函数的参数传入</li>
-</ul>
-<p>每个守卫方法接收三个参数(to, from, next)：</p>
-<p>to： 即将要进入的目标 路由对象</p>
-<p>from：当前导航正要离开的路由</p>
-<p>next：执行效果依赖 next 方法的调用参数：</p>
-<ul>
-<li><p> next()：进行管道中的下一个钩子。如果全部钩子执行完了，则导航的状态就是 confirmed</p>
-</li>
-<li><p> next(false)：中断当前的导航。如果浏览器的 URL 改变了（用户手动或者浏览器后退按钮）， URL 地址重置到 from 路由对应的地址</p>
-</li>
-<li><p> next(‘/‘) 或者 next({ path: ‘/‘ })： 跳转到一个不同的地址。当前的导航被中断，然后进行一个新的导航</p>
-</li>
-<li><p>next(error)： 如果传入 next 的参数是一个 Error 实例，则导航会被终止且该错误会被传递给 router.onError() 注册过的回调</p>
-</li>
-</ul>
-<h2 id="Vuex-状态管理工具"><a href="#Vuex-状态管理工具" class="headerlink" title="Vuex 状态管理工具"></a>Vuex 状态管理工具</h2><p>使用Vuex：集中存储、管理应用的所有组件的状态（公共数据），并以相应的规则保证状态以一种可预测的方式发生变化</p>
-<p>state：设置公共数据</p>
-<p>mutations：设置方法，在组件内提交 this.$store.commit( “方法名”, 传参)  </p>
-<p>getters：类似于计算属性</p>
-<p>actions：有异步操作时代替mutations。设置 a(context) {…异步操作… context.commit(“在mutations中定义的方法名”)}  在组件内提交  this.$store.dispatch(“在mutations中定义的方法名”)  其中context是自带属性</p>
-<p>mudules：模块，通过新建对象定义新模块 const moduleA = {……}，每个模块可拥有自己的state、mutations等选项  使用  a : moduleA  选择  store.state.a</p>
-
+<p><escape>
+        
+          <p class="article-more-link">
+            <a href="/2021/03/29/vuejs%20learning/#more">Read More</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/03/29/vuejs%20learning/" data-id="ckr4eszwt000c9gvybxq8fh0f" data-title="vue.js 学习笔记" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/03/29/vuejs%20learning/" data-id="ckr4ew96y000bw8vy70aqgg2w" data-title="vue.js 学习笔记" class="article-share-link">Share</a>
       
       
       
@@ -270,7 +147,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/03/29/hello-world/" data-id="ckr4eszwl00079gvy6iada9fq" data-title="Hello World" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/03/29/hello-world/" data-id="ckr4ew96s0008w8vy05vlar95" data-title="Hello World" class="article-share-link">Share</a>
       
       
       
