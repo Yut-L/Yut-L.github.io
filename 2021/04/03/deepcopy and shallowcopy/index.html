@@ -14,7 +14,7 @@
 <meta property="og:description" content="值类型number、string、boolean 引用类型object、array 赋值区别值类型赋值时将变量内容赋予新的变量，引用类型赋值时将指针进行赋予（指向同样的内存地址）">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-04-03T13:47:40.000Z">
-<meta property="article:modified_time" content="2021-04-03T14:23:34.125Z">
+<meta property="article:modified_time" content="2022-01-13T03:35:04.781Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
   
@@ -101,19 +101,29 @@
 <p><escape><span id="more"></span></escape></p>
 <br/>
 
-<h6 id="浅拷贝-只循环了第一个层级"><a href="#浅拷贝-只循环了第一个层级" class="headerlink" title="浅拷贝: 只循环了第一个层级"></a>浅拷贝: 只循环了第一个层级</h6><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">copyShallow</span>(<span class="params">a</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">let</span> newObj = &#123;&#125;;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">let</span> key <span class="keyword">in</span> a)&#123;</span><br><span class="line">    newObj = a[key];</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> newObj</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h6 id="浅拷贝-只循环了第一个层级"><a href="#浅拷贝-只循环了第一个层级" class="headerlink" title="浅拷贝: 只循环了第一个层级"></a>浅拷贝: 只循环了第一个层级</h6><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">copyShallow</span>(<span class="params">a</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">let</span> newObj = &#123;&#125;;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">let</span> key <span class="keyword">in</span> a)&#123;</span><br><span class="line">    newObj[key]= a[key];</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> newObj</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <br/>
 
 <h6 id="深拷贝-深度遍历-直到所有属性的值都为值类型"><a href="#深拷贝-深度遍历-直到所有属性的值都为值类型" class="headerlink" title="深拷贝: 深度遍历, 直到所有属性的值都为值类型"></a>深拷贝: 深度遍历, 直到所有属性的值都为值类型</h6><p>（1）前往 <a target="_blank" rel="noopener" href="https://www.lodashjs.com/">https://www.lodashjs.com/</a> 获取封装好的方法: _.cloneDeep（利用script标签引用网站的lodash.js文件）</p>
-<p>（2）将对象序列化成字符串, 再将字符串反序列化（如果对象里含有方法则该方法无法被序列化，该部分会被丢弃）</p>
+<p>（2）将对象序列化成字符串, 再将字符串反序列化</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">JSON.parse(JSON.stringify(object))</span><br></pre></td></tr></table></figure>
+
+<p>（3）手写深拷贝</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">copyDeep</span>(<span class="params">a</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(<span class="keyword">typeof</span> a !== <span class="string">&#x27;object&#x27;</span> || a == <span class="literal">null</span>)&#123;</span><br><span class="line">    <span class="keyword">return</span> a</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">let</span> result;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">if</span>(a <span class="keyword">instanceof</span> <span class="built_in">Array</span>)&#123;</span><br><span class="line">     result = [];</span><br><span class="line">   &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">     result = &#123;&#125;;</span><br><span class="line">   &#125;</span><br><span class="line">    </span><br><span class="line">   <span class="keyword">for</span>(<span class="keyword">let</span> key <span class="keyword">in</span> a)&#123;</span><br><span class="line">     result[key] = copyDeep(a[key])</span><br><span class="line">   &#125;</span><br><span class="line">    </span><br><span class="line">   <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>（4）第（2）、（3）方法无法拷贝的属性值有underfined、symol、function、error、regexp等类型，如需拷贝则另作处理</p>
+<p>拷贝函数：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">aFun</span>(<span class="params">a, b, c</span>)</span>&#123;  <span class="keyword">return</span> a * b * c; &#125; </span><br><span class="line"><span class="keyword">var</span> copyF = <span class="keyword">new</span> <span class="built_in">Function</span>(<span class="string">&#x27;return &#x27;</span>+ aFun.toString())();</span><br></pre></td></tr></table></figure>
+
+<p>拷贝error、regexp：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> _constructor = target.constructor;  <span class="comment">//引用对应类型的constructor属性</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> _constructor(target);  <span class="comment">// regexp类型</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> _constructor(target.message);  <span class="comment">// error类型</span></span><br></pre></td></tr></table></figure>
 
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/04/03/deepcopy%20and%20shallowcopy/" data-id="ckxyva5590007tcvy7r54gxt3" data-title="JS 浅拷贝和深拷贝" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/04/03/deepcopy%20and%20shallowcopy/" data-id="ckyd6fzzn000b2wvy1zyl9x68" data-title="JS 浅拷贝和深拷贝" class="article-share-link">Share</a>
       
       
       
@@ -173,7 +183,7 @@
       <ul>
         
           <li>
-            <a href="/2021/11/09/vue%E6%95%B0%E6%8D%AE%E5%8A%AB%E6%8C%81%E5%87%BD%E6%95%B0/">vue数据劫持函数</a>
+            <a href="/2021/11/09/vuejs%20data%20hijack/">vue数据劫持函数</a>
           </li>
         
           <li>
