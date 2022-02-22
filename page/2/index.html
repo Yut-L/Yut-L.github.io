@@ -71,6 +71,140 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-js event loop" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/04/06/js%20event%20loop/" class="article-date">
+  <time class="dt-published" datetime="2021-04-06T07:37:55.000Z" itemprop="datePublished">2021-04-06</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/04/06/js%20event%20loop/">JS 事件循环</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h4 id="关于-JS-异步"><a href="#关于-JS-异步" class="headerlink" title="关于 JS 异步"></a>关于 JS 异步</h4><p>js 作为浏览器端的脚本语言，主要的用途为用户与服务端的交互与操作 dom 。而操作 dom 就注定了 js 只能是单线程语言，假如多个线程同时对一个 dom 进行操作则浏览器无法判断如何渲染。（在浏览器中 js 引擎负责解释和执行JavaScript代码的线程只有一个）。单线程就意味着，所有任务需要排队，前一个任务结束，才会执行后一个任务。同步会阻塞代码的执行，而异步不会。事件循环（event  loop）是  js 异步的实现方式。</p>
+<p><escape>
+        
+          <p class="article-more-link">
+            <a href="/2021/04/06/js%20event%20loop/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/04/06/js%20event%20loop/" data-id="ckzxmmzq5000dgkvyefagaxor" data-title="JS 事件循环" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-debounce and throttle" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/04/03/debounce%20and%20throttle/" class="article-date">
+  <time class="dt-published" datetime="2021-04-03T14:22:14.000Z" itemprop="datePublished">2021-04-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/04/03/debounce%20and%20throttle/">JS 防抖和节流</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h4 id="防抖"><a href="#防抖" class="headerlink" title="防抖:"></a>防抖:</h4><p>减少事件的触发, 一段时间内只有一次触发（在产生事件时取消上一次事件，开启新定时器），如窗口变化、搜索框联想</p>
+<p><escape>
+        
+          <p class="article-more-link">
+            <a href="/2021/04/03/debounce%20and%20throttle/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/04/03/debounce%20and%20throttle/" data-id="ckzxmmzq00008gkvy80wm8x2v" data-title="JS 防抖和节流" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-deepcopy and shallowcopy" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/04/03/deepcopy%20and%20shallowcopy/" class="article-date">
+  <time class="dt-published" datetime="2021-04-03T13:47:40.000Z" itemprop="datePublished">2021-04-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/04/03/deepcopy%20and%20shallowcopy/">JS 浅拷贝和深拷贝</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h4 id="值类型"><a href="#值类型" class="headerlink" title="值类型"></a>值类型</h4><p>number、string、boolean</p>
+<h4 id="引用类型"><a href="#引用类型" class="headerlink" title="引用类型"></a>引用类型</h4><p>object、array</p>
+<h4 id="赋值区别"><a href="#赋值区别" class="headerlink" title="赋值区别"></a>赋值区别</h4><p>值类型赋值时将变量内容赋予新的变量，引用类型赋值时将指针进行赋予（指向同样的内存地址）</p>
+<p><escape>
+        
+          <p class="article-more-link">
+            <a href="/2021/04/03/deepcopy%20and%20shallowcopy/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/04/03/deepcopy%20and%20shallowcopy/" data-id="ckzxmmzpz0007gkvy2puc8uj8" data-title="JS 浅拷贝和深拷贝" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-about the CORS" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2021/04/01/about%20the%20CORS/" class="article-date">
@@ -105,7 +239,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/04/01/about%20the%20CORS/" data-id="ckyd6fzzj00072wvydnzi2lvx" data-title="跨域（Cross-origin resource sharing）相关" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/04/01/about%20the%20CORS/" data-id="ckzxmmzpy0005gkvy1pr6hhmk" data-title="跨域（Cross-origin resource sharing）相关" class="article-share-link">Share</a>
       
       
       
@@ -151,7 +285,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/03/29/flex%20use/" data-id="ckyd6fzzr000e2wvyb8ajev3x" data-title="flex布局 用法记录" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/03/29/flex%20use/" data-id="ckzxmmzq10009gkvy9klt9atf" data-title="flex布局 用法记录" class="article-share-link">Share</a>
       
       
       
@@ -200,7 +334,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/03/29/vuejs%20learning/" data-id="ckyd6fzzv000i2wvygea97lyy" data-title="vue.js 学习笔记" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/03/29/vuejs%20learning/" data-id="ckzxmmzq9000hgkvydng65ha4" data-title="vue.js 学习笔记" class="article-share-link">Share</a>
       
       
       
@@ -239,7 +373,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/03/29/hello-world/" data-id="ckyd6fzzo000c2wvy3h0ybmn5" data-title="Hello World" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/03/29/hello-world/" data-id="ckzxmmzq2000agkvydlbrfmn4" data-title="Hello World" class="article-share-link">Share</a>
       
       
       
@@ -274,7 +408,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">November 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">July 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/06/">June 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">April 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/12/">December 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">November 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">July 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/06/">June 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">April 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a></li></ul>
     </div>
   </div>
 
@@ -287,6 +421,14 @@
       <ul>
         
           <li>
+            <a href="/2021/12/03/promise/">Promise构造函数</a>
+          </li>
+        
+          <li>
+            <a href="/2021/11/13/swicth%20themeColor/">网页主题(颜色)切换</a>
+          </li>
+        
+          <li>
             <a href="/2021/11/09/vuejs%20data%20hijack/">vue数据劫持函数</a>
           </li>
         
@@ -296,14 +438,6 @@
         
           <li>
             <a href="/2021/06/16/JS%20array%20deduplication/">JS 数组去重</a>
-          </li>
-        
-          <li>
-            <a href="/2021/05/21/P%20Js%20learning/">JavaScript 红宝书学习笔记</a>
-          </li>
-        
-          <li>
-            <a href="/2021/05/05/html%20semantic%20meaning/">关于HTML语义化</a>
           </li>
         
       </ul>
