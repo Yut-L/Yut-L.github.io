@@ -6,15 +6,15 @@
   
   <title>JS 事件循环 | Nobody can save you but yourself</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="关于 JS 异步js 作为浏览器端的脚本语言，主要的用途为用户与服务端的交互与操作 dom 。而操作 dom 就注定了 js 只能是单线程语言，假如多个线程同时对一个 dom 进行操作则浏览器无法判断如何渲染。（在浏览器中 js 引擎负责解释和执行JavaScript代码的线程只有一个）。单线程就意味着，所有任务需要排队，前一个任务结束，才会执行后一个任务。同步会阻塞代码的执行，而异步不会。事件循">
+  <meta name="description" content="关于 JS 异步js 作为浏览器端的脚本语言，主要的用途为用户与服务端的交互操作 dom 。而操作 dom 就注定了 js 只能是单线程语言，假如多个线程同时对一个 dom 进行操作则浏览器无法判断如何渲染。（在浏览器中 js 引擎负责解释和执行JavaScript代码的线程只有一个）。单线程就意味着，所有任务需要排队，前一个任务结束，才会执行后一个任务。同步会阻塞代码的执行，而异步不会。事件循环">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JS 事件循环">
 <meta property="og:url" content="http://example.com/2021/04/06/js%20event%20loop/index.html">
 <meta property="og:site_name" content="Nobody can save you but yourself">
-<meta property="og:description" content="关于 JS 异步js 作为浏览器端的脚本语言，主要的用途为用户与服务端的交互与操作 dom 。而操作 dom 就注定了 js 只能是单线程语言，假如多个线程同时对一个 dom 进行操作则浏览器无法判断如何渲染。（在浏览器中 js 引擎负责解释和执行JavaScript代码的线程只有一个）。单线程就意味着，所有任务需要排队，前一个任务结束，才会执行后一个任务。同步会阻塞代码的执行，而异步不会。事件循">
+<meta property="og:description" content="关于 JS 异步js 作为浏览器端的脚本语言，主要的用途为用户与服务端的交互操作 dom 。而操作 dom 就注定了 js 只能是单线程语言，假如多个线程同时对一个 dom 进行操作则浏览器无法判断如何渲染。（在浏览器中 js 引擎负责解释和执行JavaScript代码的线程只有一个）。单线程就意味着，所有任务需要排队，前一个任务结束，才会执行后一个任务。同步会阻塞代码的执行，而异步不会。事件循环">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-04-06T07:37:55.000Z">
-<meta property="article:modified_time" content="2021-04-19T14:52:13.067Z">
+<meta property="article:modified_time" content="2022-02-26T05:21:23.987Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
   
@@ -95,7 +95,7 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h4 id="关于-JS-异步"><a href="#关于-JS-异步" class="headerlink" title="关于 JS 异步"></a>关于 JS 异步</h4><p>js 作为浏览器端的脚本语言，主要的用途为用户与服务端的交互与操作 dom 。而操作 dom 就注定了 js 只能是单线程语言，假如多个线程同时对一个 dom 进行操作则浏览器无法判断如何渲染。（在浏览器中 js 引擎负责解释和执行JavaScript代码的线程只有一个）。单线程就意味着，所有任务需要排队，前一个任务结束，才会执行后一个任务。同步会阻塞代码的执行，而异步不会。事件循环（event  loop）是  js 异步的实现方式。</p>
+        <h4 id="关于-JS-异步"><a href="#关于-JS-异步" class="headerlink" title="关于 JS 异步"></a>关于 JS 异步</h4><p>js 作为浏览器端的脚本语言，主要的用途为用户与服务端的交互操作 dom 。而操作 dom 就注定了 js 只能是单线程语言，假如多个线程同时对一个 dom 进行操作则浏览器无法判断如何渲染。（在浏览器中 js 引擎负责解释和执行JavaScript代码的线程只有一个）。单线程就意味着，所有任务需要排队，前一个任务结束，才会执行后一个任务。同步会阻塞代码的执行，而异步不会。事件循环（event  loop）是  js 异步的实现方式。</p>
 <p><escape><span id="more"></span></escape></p>
 <br/>
 
@@ -103,7 +103,7 @@
 <h4 id="消息队列message-quene"><a href="#消息队列message-quene" class="headerlink" title="消息队列message quene"></a>消息队列message quene</h4><p>setTimeout、setInterval、setlmmediate等异步操作的回调函数会入队到消息队列，在调用栈清空后执行（一个循环结束后），执行顺序为先进先出</p>
 <p>js 异步操作主要有：</p>
 <p>   1、定时任务（setTimeout、setInterval）</p>
-<p>   2、网路请求（ajax、动态<img>加载）</p>
+<p>   2、网络请求（ajax、动态<img>加载）</p>
 <p>   3、事件处理函数绑定（click，focus，change等）</p>
 <h4 id="微任务队列microtask-quene"><a href="#微任务队列microtask-quene" class="headerlink" title="微任务队列microtask quene"></a>微任务队列microtask quene</h4><p>Promise回调、await、async、MutationObserver等操作会入队到微任务队列，在调用栈清空时立即执行，处理时新加入的微任务也一起执行（一个循环结束时）</p>
 <h4 id="示例代码"><a href="#示例代码" class="headerlink" title="示例代码:"></a>示例代码:</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> p = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="params">resolve</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="number">4</span>);</span><br><span class="line">  resolve(<span class="number">5</span>);</span><br><span class="line">&#125;);</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fun1</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fun2</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="number">2</span>);</span><br><span class="line">  &#125;);</span><br><span class="line">  fun1();</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="number">3</span>);</span><br><span class="line">  p.then(<span class="function"><span class="params">resolved</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(resolved)</span><br><span class="line">  &#125;)</span><br><span class="line">  .then(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="number">6</span>)</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line">fun2();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 打印顺序为413562</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i&lt; <span class="number">5</span>; i++) &#123;</span><br><span class="line">  <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(i++);</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(i);</span><br><span class="line"></span><br><span class="line"><span class="comment">//打印顺序为556789</span></span><br></pre></td></tr></table></figure>
@@ -118,7 +118,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/04/06/js%20event%20loop/" data-id="cl02f08gy000dqcvy02is6yle" data-title="JS 事件循环" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/04/06/js%20event%20loop/" data-id="cl05f1zxz000dowvyftqkhf47" data-title="JS 事件循环" class="article-share-link">Share</a>
       
       
       

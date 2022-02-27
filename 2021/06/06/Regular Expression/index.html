@@ -14,7 +14,7 @@
 <meta property="og:description" content="RegExp: Regular Expression转义字符: \ \n: 换行符 \r: 回车符 \t: 制表符（四个空格） number、string、boolean">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-06-06T11:50:40.000Z">
-<meta property="article:modified_time" content="2022-01-28T11:23:55.743Z">
+<meta property="article:modified_time" content="2022-02-26T10:18:56.240Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
   
@@ -114,7 +114,7 @@
 <p>[^0]: 匹配非0</p>
 <p>/te|st/: 匹配te或st</p>
 <p>/\w{1,2}/: 匹配一个或两个</p>
-<h4 id="检查属性"><a href="#检查属性" class="headerlink" title="检查属性"></a>检查属性</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> reg_test=<span class="regexp">/test/igm</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(reg_test.multilme)</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(reg_test.ignoreCase)</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(reg_test.source)</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(reg_test.global)</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(reg_test.lastIndex)</span><br></pre></td></tr></table></figure>
+<h4 id="检查属性"><a href="#检查属性" class="headerlink" title="检查属性"></a>检查属性</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> reg_test=<span class="regexp">/test/igm</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(reg_test.multiline)</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(reg_test.ignoreCase)</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(reg_test.source)</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(reg_test.global)</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(reg_test.lastIndex)</span><br></pre></td></tr></table></figure>
 
 <h4 id="元字符"><a href="#元字符" class="headerlink" title="元字符"></a>元字符</h4><p>\w: [0-9A-z_]</p>
 <p>\W: [^\w]</p>
@@ -137,13 +137,13 @@
 <p>exec(): 正则方法，加g，执行一次匹配一次，直到返回null，然后重头开始。非g，只匹配一次第一个片段。加g与否都会返回子表达式中的字符串。</p>
 <p>match(): 字符串方法，加g会自动循环匹配，返回所有匹配片段，不返回子表达式中的字符串。非g，返回第一个匹配片段，返回子表达式中的字符串。</p>
 <p>split(): 参数为正则表达式，用于分割字符串，分割处为匹配内容</p>
-<p>search(): 字符串方法，参数为正则表达式</p>
+<p>search(): 字符串方法，参数为正则表达式，返回匹配的位置索引，匹配失败时返回-1</p>
 <p>replace(): 字符串方法，参数为正则表达式或字符串，传入的表达式若带g则进行全局替换。第二个参数可以为替换内容（字符串，如有表达式则$1代表第一个子表达式，$2代表第二个子表达式）或一个函数，该函数的形参含义为: 第一个形参：匹配内容，第二个形参：第一个子表达式，第三个形参：第二个子表达式…</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/06/06/Regular%20Expression/" data-id="cl02f08gp0003qcvyhm891pd2" data-title="正则表达式" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/06/06/Regular%20Expression/" data-id="cl05f1zxs0003owvybwo64ipk" data-title="正则表达式" class="article-share-link">Share</a>
       
       
       
